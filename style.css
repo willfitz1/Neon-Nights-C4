@@ -1,0 +1,22 @@
+body {
+  font-family: Raleway, Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+#board {
+  height: 540px;
+  width: 630px;
+  background-color: gold;
+  border: 10px solid black;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap; 
+}
+
+.tile{
+  height: 80px;
+  width: 80px;
+  background-color: white;
+  border-radius: 50%;
+  margin: 5ex;
+}
