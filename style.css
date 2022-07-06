@@ -1,22 +1,181 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Raleway, Arial, Helvetica, sans-serif;
-  text-align: center;
-}
-
-#board {
-  height: 540px;
-  width: 630px;
-  background-color: gold;
-  border: 10px solid black;
-  margin: 0 auto;
+  align-items: center;
+  background: white;
   display: flex;
-  flex-wrap: wrap; 
+  flex-direction: column;
+  font-family: sans-serif;
+  padding: 25px;
+  width: 100%;
+  background-image: url(https://i.imgur.com/c9vRiAS.jpg);
+  background-size: cover;
 }
 
-.tile{
-  height: 80px;
-  width: 80px;
-  background-color: white;
+h1 {
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px #0fa,
+      0 0 82px #0fa,
+      0 0 92px #0fa,
+      0 0 102px #0fa,
+      0 0 151px #0fa;
+      animation: flicker 1.5s infinite alternate;
+      padding: 20px;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  height: 700px;
+  margin: 10px 0 25px;
+  width: 700px;
+}
+
+.cell {
+  align-items: center;
+  background: #4370F1;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  width: 100px;
+}
+
+.cell::after {
+  background: white;
   border-radius: 50%;
-  margin: 5ex;
+  border: 3px solid black;
+  content: '';
+  cursor: pointer;
+  height: 75px;
+  width: 75px;
+}
+
+.cell:not(.row-top).red::after {
+  background: red;
+}
+.cell:not(.row-top).yellow::after {
+  background: yellow;
+}
+
+.cell:not(.row-top).red.win {
+  background: red;
+}
+
+.cell:not(.row-top).yellow.win {
+  background: yellow;
+}
+
+.cell.row-top {
+  background: white;
+}
+
+.cell.row-top::after {
+  border: none;
+}
+
+.cell.row-top.red::after {
+  background: red;
+  border: 3px solid black;
+}
+
+.cell.row-top.yellow::after {
+  background: yellow;
+  border: 3px solid black;
+}
+
+.footer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 700px;
+}
+
+.reset {
+  background-color: #4370F1;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px 30px;
+  text-transform: uppercase;
+}
+
+.reset:hover {
+  background-color: #1D50F1;
+}
+
+.reset:active {
+  background-color: #4d7ef1;
+
+}
+
+.status {
+  display: block;
+  font-size: 20px;
+}
+
+/* Util CSS */
+.left-border {
+  border-left: 3px solid black;
+}
+
+.top-border {
+  border-top: 3px solid black;
+}
+
+.right-border {
+  border-right: 3px solid black;
+}
+
+.bottom-border {
+  border-bottom: 3px solid black;
+}
+
+.left-border.top-border {
+  border-radius: 10px 0 0 0;
+}
+
+.right-border.top-border {
+  border-radius: 0 10px 0 0;
+}
+
+.right-border.bottom-border {
+  border-radius: 0 0 10px 0;
+}
+
+.left-border.bottom-border {
+  border-radius: 0 0 0 10px;
+}
+@keyframes flicker {
+
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+
+      text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px #0fa,
+      0 0 80px #0fa,
+      0 0 90px #0fa,
+      0 0 100px #0fa,
+      0 0 150px #0fa;
+  
+  }
+  
+  20%, 24%, 55% {        
+      text-shadow: none;
+  }    
 }
