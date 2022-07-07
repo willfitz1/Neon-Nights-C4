@@ -228,6 +228,32 @@ while (colToCheck <= 6) {
 let isWinningCombo = checkWinningCells(winningCells)
 if (isWinningCombo) return
 
+//check vertically
+winningCells = [cell]
+rowToCheck = rowIndex - 1
+colToCheck = colIndex
+while (rowToCheck >= 0) {
+  const cellToCheck = rows[rowToCheck][colToCheck]
+  if (getColorOfCell(cellToCheck) === color) {
+    winningCells.push(cellToCheck)
+    rowToCheck--
+  } else {
+    break
+  }
+}
+rowToCheck = rowIndex + 1
+while (rowToCheck <= 5) {
+  const cellToCheck = rows[rowToCheck][colToCheck]
+  if (getColorOfCell(cellToCheck) === color) {
+    winningCells.push(cellToCheck)
+    rowToCheck++
+  } else {
+    break
+  }
+}
+isWinningCombo = checkWinningCells(winningCells)
+if (isWinningCombo) return
+
 // event handlers
 const handleCellMouseOver = (e) => {
   if (!gameLive) return
