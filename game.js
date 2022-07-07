@@ -140,14 +140,105 @@ const rows = [row0, row1, row2, row3, row4, row5, topRow]
 let gameLive = true
 let nextPlayer = true
 
+//functions
+const getClassListArray = (cell) => {
+  const classList = cell.classList
+  return [...classList]
+}
+
+const getCell = (cell) => {
+  const classList = getClassListArray(cell)
+  const rowClass = classList.find((className) => className.includes('row'))
+  const colClass = classList.find((className) => className.includes('col'))
+  const rowIndex = rowClass[4]
+  const colIndex = colClass[4]
+  const rowNumber = parseInt(rowIndex, 10)
+  const colNumber = parseInt(colIndex, 10)
+
+  return [rowNumber, colNumber]
+}
+
+const getFirstOpenCellForColumn = (colIndex) => {
+  const column = columns[colIndex]
+  const columnWithoutTop = column.slice(0, 6)
+
+  for (const cell of columnWithoutTop) {
+    const classList = getClassListArray(cell)
+    if (!classList.includes('yellow') && !classList.includes('red')) {
+      return cell
+    }
+  }
+
+  return null
+}
+
+const clearColorFromTop = (colIndex) => {
+  const topCell = topCells[colIndex]
+  topCell.classList.remove('yellow')
+  topCell.classList.remove('red')
+}
+
+const getColorOfCell = (cell) => {
+  const classList = getClassListArray(cell)
+  if (classList.includes('yellow')) return 'yellow'
+  if (classList.includes('red')) return 'red'
+  return null
+}
+
+const checkWinningCells = (cells) => {
+  if (cells.length < 4) return false
+
+  gameLive = false
+  for (const cell of cells) {
+    cell.classList.add('win')
+  }
+  statusSpan.textContent = `${yellowIsNext ? 'Yellow' : 'Red'} has won!`
+  return true
+}
+
+const checkStatusOfGame = (cell) => {
+  const color = getColorOfCell(cell)
+  if (!color) return
+  const [rowIndex, colIndex] = getCellLocation(cell)
+}
+
+//check horizontally
+let winningCells = [cell]
+let rowToCheck = rowIndex
+let colToCheck = colIndex - 1
+while (colToCheck >= 0) {
+  const cellToCheck = rows[rowToCheck][colToCheck]
+  if (getColorOfCell(cellToCheck) === color) {
+    winningCells.push(cellToCheck)
+    colToCheck--
+  } else {
+    break
+  }
+}
+colToCheck = colIndex + 1
+while (colToCheck <= 6) {
+  const cellToCheck = rows[rowToCheck][colToCheck]
+  if (getColorOfCell(cellToCheck) === color) {
+    winningCells.push(cellToCheck)
+    colToCheck++
+  } else {
+    break
+  }
+}
+let isWinningCombo = checkWinningCells(winningCells)
+if (isWinningCombo) return
+
 // event handlers
 const handleCellMouseOver = (e) => {
-  console.log(e)
+  if (!gameLive) return
+  const cell = e.target
+  const [rowIndex, colIndex] = getCell(cell)
 }
 
 // event listeners
 for (const row of rows) {
   for (const cell of row) {
     cell.addEventListener('mouseover', handleCellMouseOver)
+    //shows in console that you are hovering over a certain cell
   }
 }
