@@ -202,7 +202,7 @@ const checkStatusOfGame = (cell) => {
   const [rowIndex, colIndex] = getCellLocation(cell)
 }
 
-//check horizontally
+//check horizontally for winner
 let winningCells = [cell]
 let rowToCheck = rowIndex
 let colToCheck = colIndex - 1
@@ -228,7 +228,7 @@ while (colToCheck <= 6) {
 let isWinningCombo = checkWinningCells(winningCells)
 if (isWinningCombo) return
 
-//check vertically
+//check vertically for winner
 winningCells = [cell]
 rowToCheck = rowIndex - 1
 colToCheck = colIndex
@@ -253,6 +253,33 @@ while (rowToCheck <= 5) {
 }
 isWinningCombo = checkWinningCells(winningCells)
 if (isWinningCombo) return
+
+//check diagonally L -> R
+winningCells = [cell]
+rowToCheck = rowIndex + 1
+colToCheck = colIndex - 1
+while (colToCheck >= 0 && rowToCheck <= 5) {
+  const cellToCheck = rows[rowToCheck][colToCheck]
+  if (getColorOfCell(cellToCheck) === color) {
+    winningCells.push(cellToCheck)
+    rowToCheck++
+    colToCheck--
+  } else {
+    break
+  }
+}
+rowToCheck = rowIndex - 1
+colToCheck = colIndex + 1
+while (colToCheck <= 6 && rowToCheck >= 0) {
+  const cellToCheck = rows[rowToCheck][colToCheck]
+  if (getColorOfCell(cellToCheck) === color) {
+    winningCells.push(cellToCheck)
+    rowToCheck--
+    colToCheck++
+  } else {
+    break
+  }
+}
 
 // event handlers
 const handleCellMouseOver = (e) => {
