@@ -281,6 +281,35 @@ while (colToCheck <= 6 && rowToCheck >= 0) {
   }
 }
 
+// check diagonally R -> L
+winningCells = [cell]
+rowToCheck = rowIndex - 1
+colToCheck = colIndex - 1
+while (colToCheck >= 0 && rowToCheck >= 0) {
+  const cellToCheck = rows[rowToCheck][colToCheck]
+  if (getColorOfCell(cellToCheck) === color) {
+    winningCells.push(cellToCheck)
+    rowToCheck--
+    colToCheck--
+  } else {
+    break
+  }
+}
+rowToCheck = rowIndex + 1
+colToCheck = colIndex + 1
+while (colToCheck <= 6 && rowToCheck <= 5) {
+  const cellToCheck = rows[rowToCheck][colToCheck]
+  if (getColorOfCell(cellToCheck) === color) {
+    winningCells.push(cellToCheck)
+    rowToCheck++
+    colToCheck++
+  } else {
+    break
+  }
+}
+isWinningCombo = checkWinningCells(winningCells)
+if (isWinningCombo) return
+
 // event handlers
 const handleCellMouseOver = (e) => {
   if (!gameLive) return
