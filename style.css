@@ -61,23 +61,23 @@ h1 {
 }
 
 .cell:not(.row-top).red::after {
-  background: red;
+  background: #472081;
 }
 .cell:not(.row-top).yellow::after {
-  background: yellow;
+  background: #7885ff;
 }
 
 .cell:not(.row-top).red.win {
-  background: red;
+  background: #472081;
 }
 
 .cell:not(.row-top).yellow.win {
-  background: yellow;
+  background: #7885ff;
 }
 
 .cell.row-top {
   background: white;
-  opacity: 0%;
+  /* opacity: 0%; */
 }
 
 .cell.row-top::after {
@@ -85,12 +85,12 @@ h1 {
 }
 
 .cell.row-top.red::after {
-  background: red;
+  background: #472081;
   border: 3px solid black;
 }
 
 .cell.row-top.yellow::after {
-  background: yellow;
+  background: #7885ff;
   border: 3px solid black;
 }
 
