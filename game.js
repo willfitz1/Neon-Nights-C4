@@ -141,6 +141,10 @@ let gameLive = true
 let nextPlayer = true
 
 //functions
+setTimeout(() => {
+  document.getElementById('cell-row top').classList.add('fall')
+}, 1000)
+
 const getClassListArray = (cell) => {
   const classList = cell.classList
   return [...classList]
@@ -193,7 +197,7 @@ const checkWinningCells = (cells) => {
   for (const cell of cells) {
     cell.classList.add('win')
   }
-  statusSpan.textContent = `${nextPlayer ? 'Yellow' : 'Red'} has won!`
+  statusSpan.textContent = `${nextPlayer ? 'Purple' : 'Blue'} has won!`
   return true
 }
 
