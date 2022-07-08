@@ -65,18 +65,18 @@ h1 {
 }
 
 .cell:not(.row-top).red::after {
-  background: #472081;
+  background: #8D4BE0;
 }
 .cell:not(.row-top).yellow::after {
-  background: #7885ff;
+  background: #567cff;
 }
 
 .cell:not(.row-top).red.win {
-  background: #472081;
+  background: #8D4BE0;
 }
 
 .cell:not(.row-top).yellow.win {
-  background: #7885ff;
+  background: #567cff;
 }
 
 .cell.row-top {
