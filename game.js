@@ -182,14 +182,6 @@ const clearTopColor = (colIndex) => {
   topCell.classList.remove('yellow')
   topCell.classList.remove('red')
 }
-
-const getCellColor = (cell) => {
-  const classList = getClassListArray(cell)
-  if (classList.includes('yellow')) return 'yellow'
-  if (classList.includes('red')) return 'red'
-  return null
-}
-
 const checkWinningCells = (cells) => {
   if (cells.length < 4) return false
 
@@ -199,6 +191,13 @@ const checkWinningCells = (cells) => {
   }
   statusSpan.textContent = `${nextPlayer ? 'Purple' : 'Blue'} has won!`
   return true
+}
+
+const getCellColor = (cell) => {
+  const classList = getClassListArray(cell)
+  if (classList.includes('yellow')) return 'yellow'
+  if (classList.includes('red')) return 'red'
+  return null
 }
 
 const checkStatusOfGame = (cell) => {
