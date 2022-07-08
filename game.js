@@ -368,13 +368,6 @@ const handleCellClick = (e) => {
 }
 
 // event listeners
-for (const row of rows) {
-  for (const cell of row) {
-    cell.addEventListener('mouseover', handleCellMouseOver)
-    cell.addEventListener('mouseout', handleCellMouseOut)
-    cell.addEventListener('click', handleCellClick)
-  }
-}
 
 resetButton.addEventListener('click', () => {
   for (const row of rows) {
@@ -388,3 +381,11 @@ resetButton.addEventListener('click', () => {
   nextPlayer = true
   statusSpan.textContent = ''
 })
+
+for (const row of rows) {
+  for (const cell of row) {
+    cell.addEventListener('mouseover', handleCellMouseOver)
+    cell.addEventListener('mouseout', handleCellMouseOut)
+    cell.addEventListener('click', handleCellClick)
+  }
+}
