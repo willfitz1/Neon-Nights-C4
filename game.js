@@ -193,17 +193,17 @@ const checkWinningCells = (cells) => {
   return true
 }
 
-const getCellColor = (cell) => {
-  const classList = getClassListArray(cell)
-  if (classList.includes('yellow')) return 'yellow'
-  if (classList.includes('red')) return 'red'
-  return null
-}
-
 const checkStatusOfGame = (cell) => {
   const color = getCellColor(cell)
   if (!color) return
   const [rowIndex, colIndex] = getCell(cell)
+
+  const getCellColor = (cell) => {
+    const classList = getClassListArray(cell)
+    if (classList.includes('yellow')) return 'yellow'
+    if (classList.includes('red')) return 'red'
+    return null
+  }
 
   //check horizontally for winner
   let winningCells = [cell]
